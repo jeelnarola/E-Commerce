@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    
+    <style>
+        @import url(/css/all.min.css);
+        @import url(/css/style.css);
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="signup-box">
+                <div class="row">
+                    <div class="signup-img">
+                        <h1>E-commerce</h1>
+                        <img src="/img/signupBg.jpg" alt="">
+                    </div>
+                    <div class="signup-content">
+                        <h1>Weclome to signup</h1>
+                        <form id="signup">
+                            <div class="inputbox">
+                                <input type="text" id="title" placeholder="" class="username" name="username" required>
+                                <span for="" class="title">UserName</span>
+                            </div>
+                            <div class="inputbox">
+                                <input type="email" id="title" placeholder="" class="email" name="email" required>
+                                <span for="" class="title">Email</span>
+                            </div>
+                            <div class="inputbox">
+                                <input type="password" id="title" placeholder="" class="password" name="password" required>
+                                <span for="" class="title">Password</span>
+                                <i class="fa-solid fa-eye-slash"></i>
+                            </div> 
+                            <select name="role" class="role" id="">
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                            <input type="submit" value="submit">
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<!-- <script src="/js/signup.js"></script> -->
+<script>
+    document.getElementById("signup").addEventListener("submit",(e)=>{
+    e.preventDefault()
+   let data={
+    username:document.querySelector('.username').value,
+    email:document.querySelector('.email').value,
+    password:document.querySelector('.password').value,
+    role:document.querySelector('.role').value,
+   }
+   fetch(`http://localhost:8090/signupCheck?email=${data.email}`)
+    .then((res)=>{return res.json()})
+    .then((dat)=>{
+    if(dat.msg){
+        fetch('http://localhost:8090/signup',{
+            method:"POST",
+            headers:{"content-type":"application/json"},
+            body:JSON.stringify(data)
+        })
+    }else{
+        alert('user extis !')
+        window.location.href="/login"
+    }
+})
+})
+</script>
+</html>

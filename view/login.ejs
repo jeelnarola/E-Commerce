@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url(/css/style.css);
+    </style>
+</head>
+<body>
+    <%- include("nav") %>
+
+    <section>
+        <div class="container">
+            <div class="signup-box">
+                <div class="row">
+                    <div class="signup-content">
+                        <h1>Weclome to login</h1>
+                        <form id="signup">
+                            <div class="inputbox">
+                                <input type="email" id="title" placeholder="" class="email" name="email" required>
+                                <span for="" class="title">Email</span>
+                            </div>
+                            <div class="inputbox">
+                                <input type="password" id="title" placeholder="" class="password" name="password" required>
+                                <span for="" class="title">Password</span>
+                                <i class="fa-solid fa-eye-slash"></i>
+                            </div> 
+                            <input type="submit" value="submit" class="loginbtn">
+                        </form>
+                    </div>
+                    <div class="signup-img">
+                        <h1>E-commerce</h1>
+                        <img src="/img/loginBg.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>
