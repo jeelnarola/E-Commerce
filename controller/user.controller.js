@@ -7,7 +7,7 @@ let {token}=process.env
 console.log(token);
 
 const Home=(req,res)=>{
-   res.send('Home')
+   res.render('Home')
 }
 
 const SignupGet=(req,res)=>{
@@ -39,8 +39,10 @@ const signupCheck=async(req,res)=>{
 const loginCheck=async(req,res)=>{
    let {email}=req.query
     let data=await usermodel.findOne({email:email})
+    console.log(data);
      if(data){
-        res.send("login !")
+      const token = jwt.sign({id:data.id,role:data.role},process.env.token)
+        res.cookie('token',token).send({data:data})
      }else{
         res.send({msg : "User not reistered"})
      }
@@ -51,4 +53,8 @@ const loginGet=(req,res)=>{
    res.render('login')
 }
 
-module.exports={SignupGet,SignupPost,signupCheck,loginGet,Home,loginCheck}
+const forget=(req,res)=>{
+   res.render("forget")
+}
+
+module.exports={SignupGet,SignupPost,signupCheck,loginGet,Home,loginCheck,forget}
