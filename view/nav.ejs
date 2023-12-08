@@ -11,19 +11,38 @@
 <body>
     <header>
        <div class="container">
-        <div class="row">
+        <div class="row justify-content align-items">
             <div class="logo">
-                <img src="" alt="">
+                <img src="/img/logo.png" alt="">
             </div>
-            <div class="serach">
-                <input type="search" placeholder="search">
-            </div>
-            <div class="headerbtn">
-                <button>Signup</button>
-                <button>Login</button>
+            <nav>
+                <ul class="row">
+                    <li><a href="/">home</a></li>
+                    <li><a href="">product</a></li>
+                    <li><a href="">product add</a></li>
+                    <li><a href="">cart</a></li>
+                </ul>
+            </nav>
+            <div class="headerbtn row">
+                <button class="loginbtn"><a href="/login">login</a></button>
+                <button class="signupbtn"><a href="/signup">signup</a></button>
+                <div class="profile"></div>
             </div>
         </div>
        </div>
     </header>
 </body>
+<script>
+    let cookie=document.cookie.split(";")[1]
+    let profile=document.querySelector(".profile")
+    let loginbtn=document.querySelector(".loginbtn")
+    let signupbtn=document.querySelector(".signupbtn")
+
+    console.log(profile);
+    if(cookie){
+        profile.classList.add('visible')
+        loginbtn.classList.add("display")
+        signupbtn.classList.add("display")
+    }
+</script>
 </html>

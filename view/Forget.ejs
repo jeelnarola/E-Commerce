@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forget password</title>
+    <title>Forget</title>
     <style>
         @import url(/css/all.min.css);
         @import url(/css/style.css);
     </style>
 </head>
 <body>
-
-    <section>
-        <div class="forget">
-            <div class="box">
-                <div class="forget-profile"></div>
-                <h2>forgot your password?</h2>
-                <p>enter your email below to receive your password reset instruction</p>
-                <form action="" id="forget">
-                    <input type="email" id="email" placeholder="Enter A Email">
-                    <input type="submit" value="reset password" class="forget-btn">
-                </form>
-            </div>
+    <section class="forget">
+        <div class="forget-box">
+            <h2>reset password...</h2>
+            <form action="" id="reset">
+                <div class="reset-box">
+                    <label for="">password <span>*</span> </label>
+                    <input type="password" placeholder="New Password">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </div>
+                <label for="">confirm password <span>*</span> </label>
+                <input type="password" placeholder="Conform password">
+                <button type="submit" id="resetbtn">Reset Password</button>
+            </form>
         </div>
-
     </section>
-    
 </body>
 </html>
