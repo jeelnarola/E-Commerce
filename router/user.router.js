@@ -17,7 +17,7 @@ router.get('/EmailVerify',forget)
 router.post('/EmailVerify',forgetPost)
 
 // router.get('/resend',forgetPost)
-// router.post('/resend',Resend)
+router.get('/resend',Resend)
 
 router.post('/otpVerify',otpVerify)
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        @import url(/css/all.min.css);
+        @import url(/css/style.css);
+    </style>
+</head>
+<body>
+    <section>
+        <div class="product">
+            <div class="product-box">
+                <form action="/product" method="post" id="product-form">
+                    <h1>Add Product List</h1>
+                    <label for="">title  <span class="Tdot">:</span></label>
+                    <input type="text" name="title"><br>
+                    <label for="">price <span class="Pdot">:</span></label>
+                    <input type="number" name="price"><br>
+                    <div class="texta">
+                        <label for="">description <span class="Ddot">:</span></label>
+                        <textarea name="desc" id="" cols="30" rows="10"></textarea><br>
+                    </div>
+                    <label for="">category <span class="Cdot">:</span></label>
+                    <select name="category" id="category">
+                        <option value="" selected></option>
+                        <option value="men">Men</option>
+                        <option value="women">Women</option>
+                        <option value="kid">Kid's</option>
+                        <option value="et">Et.</option>
+                    </select><br>
+                    <label for="">img <span  class="Idot">:</span></label>
+                    <input type="url" name="img"><br>
+                    <label for="">stock <span  class="Stdot">:</span></label>
+                    <input type="number" name="stock"><br>
+                   <div class="size">
+                    <label for="">size <span class="Sidot">:</span></label>
+                    <input type="checkbox" name="size" value="s">S
+                    <input type="checkbox" name="size" value="m">M
+                    <input type="checkbox" name="size" value="l">L
+                    <input type="checkbox" name="size" value="xl">XL
+                    <input type="checkbox" name="size" value="xxl">XXL
+                    <input type="checkbox" name="size" value="xxxl">XXXL
+                   </div>
+                    <br>
+                    <label for="">color <span class="Codot">:</span></label>
+                    <input type="text" name="color"><br>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

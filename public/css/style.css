@@ -461,3 +461,95 @@ margin-bottom: 25px;
 #otp .resend{
     padding: 10px;
 }
+
+
+.product .product-box #product-form{
+    padding: 40px;
+}
+.product .product-box #product-form h1{
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.product .product-box #product-form input{
+    width: 70%;
+    margin: 10px;
+    padding: 10px;
+}
+.product .product-box #product-form #category{
+    margin: 10px 0px;
+}
+.product .product-box #product-form .size {
+    margin-top: 10px;
+}
+.product .product-box #product-form .size input{
+    width: 15px;
+    margin: 0px 1px 0px 0px;
+}
+.product .product-box #product-form span{
+    margin: 0px 23px;
+    font-size: 20px;
+    font-weight: 900;   
+}
+.product .product-box #product-form  .Tdot{
+    margin-left: 69px;
+}.product .product-box #product-form  .Pdot{
+    margin-left: 61px;
+}.product .product-box #product-form  .Cdot{
+    margin-left: 41px;
+    margin-right: 31px;
+}.product .product-box #product-form  .Ddot{
+    margin-left: 23px;
+    margin-right: 36px;
+}
+.product .product-box #product-form  .Idot{
+    margin-right: 19px;
+    margin-left: 72px;
+}
+.product .product-box #product-form  .Stdot{
+    /* margin-right: 38px; */
+    margin-left: 60px;
+}
+.product .product-box #product-form  .Sidot{
+    margin-right: 31px;
+    margin-left: 69px;
+}.product .product-box #product-form  .Codot{
+    margin-right: 12px;
+    margin-left: 69px;
+}
+.product .product-box #product-form button{
+    display: block;
+    margin: auto;
+    margin-top: 40px;
+    padding: 10px 30px;
+    background-color: #3788f1;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+    box-shadow: 0px 0px 10px #1366d6;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.product .product-box #product-form button:hover{
+    background-color: #1366d6;
+    color: black;
+}
+.texta{
+    display: flex;
+}
+.texta textarea{
+    width: 70%;
+}
+
+.user {
+    border: 2px solid black;
+    width: 100%;
+    height: 100vh;
+    padding: 50px;
+}
+.user-profile{
+    display: flex;
+}
+

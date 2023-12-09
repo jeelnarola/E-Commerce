@@ -1,18 +1,18 @@
 const mongoose=require('mongoose')
 
 const product=new mongoose.Schema({
-    title:string,
+    title:String,
     price:Number,
-    desc:string,
-    category:string,
-    img:string,
+    desc:String,
+    category:String,
+    img:String,
     stock:Number,
-    rating:[{userid:string, value:Number}],
-    size:string,
-    color:string,
+    rating:[{userid:String, value:Number}],
+    size:[{type:String}],
+    color:String,
     createdby:{type:mongoose.Schema.Types.ObjectId, ref:"user"}
 })
 
 const productModel=mongoose.model('product',product)
 
-module.exprots=productModel
+module.exports=productModel

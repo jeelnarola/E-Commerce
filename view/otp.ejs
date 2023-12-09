@@ -10,7 +10,7 @@
 </head>
 <body>
     <section class="otpsection">
-        <form action="" method="" id="otp">
+        <form action="/otpVerify" method="post" id="otp">
             <h1>OTP Verification</h1>/
             <p>code has boon send to <span id="emailShow"></span></p>
             <input type="text" id="input1" maxlength="1" name="otp" >
@@ -19,25 +19,37 @@
             <input type="text" id="input4" maxlength="1" name="otp" >
             <input type="text" id="input5" maxlength="1" name="otp" >
             <input type="text" id="input6" maxlength="1" name="otp" >
-            <p class="resend">Didn't get the otp <a href="/resend">Resend</a></p>
+            <p class="resend">Didn't get the otp <span id="resend">Resend</span></p>
             <button type="submit" id="otpbtn">Submit</button>
         </form>
     </section>
     <script>
+
+    
         let cookie=document.cookie.split("=")[1]
         let email=document.getElementById("emailShow").innerHTML=cookie
         
-        document.getElementById('otpbtn').addEventListener("click",(e)=>{
-            e.preventDefault()
-            let data={
-                input1:document.getElementById('input1').value,
-                input2:document.getElementById('input2').value,
-                input3:document.getElementById('input3').value,
-                input4:document.getElementById('input4').value,
-                input5:document.getElementById('input5').value,
-                input6:document.getElementById('input6').value,
+        let mycooki=document.cookie.split("=")[1]
+        console.log(mycooki);
+        let mail=""
+        for(let i=0;i<mycooki.length;i++){
+            if(mycooki[i]=="%"){
+                break;
             }
-            console.log(data);
+            else{
+                mail+=mycooki[i]
+            }
+        }
+        mail+='@gmail.com'
+        let show=document.getElementById("emailShow").innerHTML=`${mail}`
+
+        document.getElementById('resend').addEventListener("click",()=>{
+         fetch("http://localhost:8090/EmailVerify",{
+            method:"POST",
+               headers:{"content-Type":"application/json"},
+               body:JSON.stringify({email:mail})          
+         })
+            
         })
     </script>
 </body>

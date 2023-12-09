@@ -7,8 +7,6 @@ require('dotenv').config()
 
 let {token}=process.env
 
-console.log(token);
-
 const Home=(req,res)=>{
    res.render('Home')
 }
@@ -102,13 +100,46 @@ const transport=nodemailer.createTransport({
 
 const Resend=(req,res)=>{
    let {resetEmail}=req.cookies
-   console.log(resetEmail);
+   
+   
+   otp=otpgenerator.generate(6,{
+      specialChars:false,
+      lowerCaseAlphabets:false,
+      upperCaseAlphabets:false,
+   })
+
+   const mailoptions={
+      from:process.env.user,
+      to:resetEmail,
+      subject:"reset password",
+      html:`otp --> ${otp}`
+   }
+
+   transport.sendMail(mailoptions,(err,info)=>{
+      if(err){
+         console.log(err);
+      }
+      else{
+         console.log(info);
+      }
+   })
+   res.render("otp")
+
 }
 
 const otpVerify=(req,res)=>{
-   let {otp}=req.body
-   console.log(otp);
-   res.send(otp)
+   let otpa=req.body.otp
+   let myotp=''
+   for(let i=0;i<otpa.length;i++){
+      myotp+=otpa[i]
+   }
+
+   if(otp==myotp){
+      console.log();
+      res.send('yes')
+   }else{
+      res.send("no")
+   }
 }
 
 const Reset=(req,res)=>{
