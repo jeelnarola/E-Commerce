@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Product</title>
     <style>
+        @import url(/css/all.min.css);
         @import url(/css/style.css);
     </style>
      <!-- <style>
@@ -18,11 +19,39 @@
             <div class="user">
                 <!-- <div class="user-profile"></div> -->
                 <div class="user-profile">
-                    <h1>img</h1>
-                    <h2>edit</h2>
+                   <div class="img-box">
+                    <img src="/img/userProfile.png" alt="">
+                    <label for="userProfile" style="cursor: pointer;"><i class="fa-solid fa-plus" ></i></label>
+                    <input type="file" id="userProfile" style="display: none;"/>
+                   </div>
+                </div>
+                <div class="user-content">
                 </div>
             </div>
         </div>
     </section>    
 </body>
+<script>
+
+    const disply=(data)=>{
+        let user=document.createElement("label")
+        user.innerHTML="username:"
+        let username=document.createElement("h1")
+        username.innerHTML=data.username
+
+
+        let div=document.createElement("div")
+        div.setAttribute("class","user-c")
+        div.append(user,username)
+
+        document.querySelector(".user-content").append(div)
+    }
+
+    const get=()=>{
+        fetch("http://localhost:8090/userdata")
+        .then((Response)=>Response.json())
+        .then((data)=>disply(data))
+    }
+    get()
+</script>
 </html>

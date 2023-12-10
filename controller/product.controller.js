@@ -1,4 +1,5 @@
 const productModel = require("../Model/product.model")
+const usermodel = require("../Model/user.model")
 
 const Product=(req,res)=>{
     res.render("product")
@@ -13,11 +14,14 @@ const ProductPost=async(req,res)=>{
 
 const Profile=async(req,res)=>{
     let {id}=req.user
-    console.log("id",id);
-    
     let data=await productModel.find({createdby:id})
-    console.log(data);
     res.render('profile')
 }
 
-module.exports={Product,ProductPost,Profile}
+const UserData=async(req,res)=>{
+    let {id}=req.user
+    let user=await usermodel.findOne({_id:id})
+    res.send(user)
+}
+
+module.exports={Product,ProductPost,Profile,UserData}
