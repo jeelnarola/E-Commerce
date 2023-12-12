@@ -4,7 +4,6 @@ require('dotenv').config()
 
 const verifyToken=(req,res,next)=>{
     let {token}=req.cookies
-    console.log(token);
     if(token){
         let decode=jwt.verify(token,process.env.token)
         if(decode){

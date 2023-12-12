@@ -1,5 +1,21 @@
 const productModel = require("../Model/product.model")
 const usermodel = require("../Model/user.model")
+const multer=require("multer")
+
+const Store=multer.diskStorage({
+    destination:"images",
+    filename:(req,file,cd)=>{
+        cd(null,file.originalname);
+    },
+})
+const user=multer({
+    storage:Store,
+}).single("img")
+
+const UserProfile=async(req,res)=>{
+    console.log(req.file.path);
+    res.send(req.file.path)
+}
 
 const Product=(req,res)=>{
     res.render("product")
@@ -13,9 +29,14 @@ const ProductPost=async(req,res)=>{
 }
 
 const Profile=async(req,res)=>{
+
+    res.render('profile')
+}
+
+const adminProduct=async(req,res)=>{
     let {id}=req.user
     let data=await productModel.find({createdby:id})
-    res.render('profile')
+    res.send(data)
 }
 
 const UserData=async(req,res)=>{
@@ -24,4 +45,22 @@ const UserData=async(req,res)=>{
     res.send(user)
 }
 
-module.exports={Product,ProductPost,Profile,UserData}
+const ProductShow=async(req,res)=>{
+    res.render("productShow")
+}
+const productGet=async(req,res)=>{
+    let data=await productModel.find()
+    res.send(data)
+}
+
+const singlePaeg=(req,res)=>{
+    res.render("singlePaeg")
+}
+
+const SingleData=async(req,res)=>{
+    let {id}=req.params;
+    let data=await productModel.findById(id)
+    res.send(data)
+}
+
+module.exports={Product,ProductPost,Profile,UserData,user,UserProfile,ProductShow,productGet,adminProduct,singlePaeg,SingleData}

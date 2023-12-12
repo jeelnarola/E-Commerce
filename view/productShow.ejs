@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url(/css/all.min.css);
+        @import url(/css/style.css);
+    </style>
+</head>
+<body>
+    <%- include("nav") %>   
+    <section>
+        <div class="container">
+            <div id="product"></div>
+        </div>
+    </section> 
+</body>
+<script>
+
+    const display=(data)=>{
+        document.getElementById("product").innerHTML=""
+        data.map((ele)=>{
+            let img=document.createElement("img")
+            img.src=ele.img
+    
+            let overly=document.createElement("div")
+            overly.setAttribute("class",`overly`)
+            
+            let icon=document.createElement("button")
+            icon.innerHTML="Show"
+            icon.addEventListener("click",()=>{
+                document.location.href=`/singlePaeg/${ele._id}`
+            })
+            overly.append(icon)
+            let div=document.createElement("div")
+            div.setAttribute("class","Product-div")
+            div.append(overly,img)
+            document.getElementById("product").append(div)
+
+
+        })
+    }
+
+   fetch("http://localhost:8090/productGet")
+   .then((res)=>res.json())
+   .then((data)=>{
+        display(data)
+   })
+</script>
+</html>
