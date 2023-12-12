@@ -8,7 +8,7 @@ const product=new mongoose.Schema({
     img:String,
     stock:Number,
     rating:[{userid:String, value:Number}],
-    size:[{type:String}],
+    size:[{type:String,default:"all"}],
     color:String,
     createdby:{type:mongoose.Schema.Types.ObjectId, ref:"user"}
 })

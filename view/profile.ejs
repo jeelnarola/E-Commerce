@@ -21,24 +21,56 @@
                 <div class="user-profile">
                    <div class="img-box">
                     <img src="/img/userProfile.png" alt="">
-                    <form action="" id="usrIMG"  enctype="multipart/form-data">
+                    <form action="#" id="usrIMG"  enctype="multipart/form-data" >
                         <label for="userProfile" id="plus" name="img" style="cursor: pointer;" ><i class="fa-solid fa-plus" ></i></label>
                         <input type="file" id="userProfile" name="img" style="display: none;" />
                         <input type="submit" value="submit">
                     </form>
+                    <div>
+                    </div>
                    </div>
                 </div>
-                <div class="user-content">
+                <div class="userPostTo">
+                    <div class="user-content"></div>
+                    <div class="PostTotle">h</div>
+
                 </div>
             </div>
         </div>
     </section>  
+    <section>
+        <div class="container">
+            <div class="hr"></div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="Post">
+                <ul class="row">
+                    <li><a href="" style="color: black; text-transform: uppercase;">Post</a></li>
+                    <li><a href="" style="color: black; text-transform: uppercase;">Save</a></li>
+                    <li><a href="" style="color: black; text-transform: uppercase;">Order</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="hr"></div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="appdend"></div>
+        </div>
+    </section>
 </body>
 <script>
-    document.getElementById("userProfile").addEventListener("change",(e)=>{
+    document.getElementById("usrIMG").addEventListener("submit",(e)=>{
         e.preventDefault()
-        // alert("j")
-        let user=document.getElementById("userProfile").value
+        let data=new FormData()
+        let user=document.getElementById("userProfile")
+
         console.log("user",user);
         fetch("http://localhost:8090/userprofile",{
             method:"POST",
@@ -86,10 +118,31 @@
         .then((data)=>disply(data))
     }
     get()
+
+
+    const post=(data)=>{
+        document.querySelector(".appdend").innerHTML=""
+        data.map((ele)=>{
+            let img=document.createElement("img")
+            img.src=ele.img
+            
+            let div=document.createElement("div")
+            
+            div.setAttribute("class","Product-div")
+            div.append(img)
+            div.addEventListener("click",()=>{
+                document.location.href=`/userPost/${ele._id}`
+            })
+            document.querySelector(".appdend").append(div)
+        })
+    }
+
     const data=()=>{
         fetch("http://localhost:8090/AdminProduct")
         .then((Response)=>Response.json())
-        .then((data)=>console.log(data))
+        .then((data)=>{
+            post(data)
+        })
     }
     data()
 </script>

@@ -18,7 +18,7 @@ const UserProfile=async(req,res)=>{
 }
 
 const Product=(req,res)=>{
-    res.render("product")
+    res.render("product",{edit:false})
 }
 
 const ProductPost=async(req,res)=>{
@@ -63,4 +63,20 @@ const SingleData=async(req,res)=>{
     res.send(data)
 }
 
-module.exports={Product,ProductPost,Profile,UserData,user,UserProfile,ProductShow,productGet,adminProduct,singlePaeg,SingleData}
+const userPostPaeg=(req,res)=>{
+    res.render("userPost")
+}
+
+const userPost=async(req,res)=>{
+    let {id}=req.params
+    let data=await productModel.findById(id)
+    res.send(data)
+}
+
+const Edit=async(req,res)=>{
+    let {id}=req.params
+    let data=await productModel.findById(id)
+    res.render('product',{data,edit:true})
+}
+
+module.exports={Product,ProductPost,Profile,UserData,user,UserProfile,ProductShow,productGet,adminProduct,singlePaeg,SingleData,userPost,userPostPaeg,Edit}

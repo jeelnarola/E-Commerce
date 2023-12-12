@@ -547,7 +547,7 @@ margin-bottom: 25px;
 .user {
     border: 2px solid black;
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     padding: 50px 90px;
     display: flex;
 }
@@ -656,4 +656,111 @@ margin-bottom: 25px;
     color: white;
     box-shadow: 0px 0px 10px white;
 }
+.hr{
+    width: 100%;
+    height: 2px;
+    background-color: rgba(97, 95, 95, 0.603);
+}
+.Post{
+    margin: 20px;
+}
+.Post ul{
+    justify-content: space-around;
+}
 
+.post .Product-div{
+    width: 200px;
+    height: 200px;
+}
+.appdend{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.appdend{
+    padding: 10px;
+}
+.appdend .Product-div{
+    width: 287px;
+    height: 320px;
+    box-shadow: 0px 0px 10px rgba(112, 110, 110, 0.2);
+    position: relative;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.appdend .Product-div img{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+#singleproduct{
+    width:100%;
+    height: 500px;
+}
+#singleproduct .Product-div img{
+    width: 420px;
+    height: 500px;
+}
+#singleproduct .Product-div{
+    display: flex;
+    flex-wrap: nowrap;
+}
+#singleproduct .Product-div .contentDiv{
+    width: 700px;
+    padding: 30px 60px;
+}
+#singleproduct .Product-div .contentDiv .description,#singleproduct .Product-div .contentDiv .stock,#singleproduct .Product-div .contentDiv .sizelabel,#singleproduct .Product-div .contentDiv .categorylabel,#singleproduct .Product-div .contentDiv  .colorlabel{
+    color: rgb(97, 96, 96);
+    text-transform: uppercase;
+    font-weight: 900;
+    display: inline-block;
+    padding: 10px;
+    margin: -2px;
+}
+#singleproduct .Product-div .contentDiv .desc{
+    padding: 10px;
+    text-indent: 50px;
+}
+
+#singleproduct .Product-div .contentDiv .size{
+    border: 1px solid black;
+    text-indent: 0px;
+    text-transform: uppercase;
+}
+#singleproduct .Product-div .contentDiv .inputData{
+    display: flex;
+    flex-wrap: nowrap;
+    /* border: 1px solid black; */
+}
+#singleproduct .Product-div .contentDiv .sizelabel{
+    display: block;
+    /* margin-bottom: 20px; */
+    /* margin-top: 10px; */
+}
+#singleproduct .Product-div .contentDiv .size{
+    padding: 5px;
+    margin: 0px  10px;
+}
+#singleproduct .Product-div .contentDiv input{
+    padding: 5px;
+}
+.stockdiv,.sizediv,.categorydiv,.colordiv{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.contentDiv .categorydiv .catP{
+    padding: 0px;
+    text-indent: 0px;
+}
+.color{
+    text-align: start;
+}
+.userPostTo{
+    display: flex;
+}
