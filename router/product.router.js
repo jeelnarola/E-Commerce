@@ -1,5 +1,5 @@
 const {Router}=require("express")
-const { Product, ProductPost, Profile, UserData, user ,UserProfile, ProductShow, productGet, adminProduct, singlePaeg, SingleData, userPost, userPostPaeg, Edit } = require("../controller/product.controller")
+const { Product, ProductPost, Profile, UserData, user ,UserProfile, ProductShow, productGet, adminProduct, singlePaeg, SingleData, userPost, userPostPaeg, Edit, cartAdd, cartGet, cartData } = require("../controller/product.controller")
 const verifyToken = require("../middleware/verifyToken")
 const usermodel = require("../Model/user.model")
 
@@ -34,6 +34,14 @@ product.get("/userPost/:id",userPostPaeg)
 product.get("/PostData/:id",userPost)
 
 product.get("/edit/:id",Edit)
+
+
+// CART Router
+
+
+product.get("/cart",verifyToken,cartGet)
+product.post("/cart",verifyToken,cartAdd)
+product.get("/cartProduct",verifyToken,cartData)
 
 product.post("/userprofile",use.single("img"),async(req,res)=>{
     console.log(req.file);

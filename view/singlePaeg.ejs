@@ -22,6 +22,15 @@
     let paeg=window.location.href.split("/")[3]
     console.log(paeg);
 
+
+    const cart=(id)=>{
+        fetch("/cart",{
+            method:"POST",
+            headers : {"content-type":"application/json"},
+            body : JSON.stringify({productId:id})
+        })
+    }
+
     const display=(ele)=>{
             let img=document.createElement("img")
             img.src=ele.img
@@ -95,6 +104,9 @@
             colordiv.append(colorlabel,color)
             let btn=document.createElement("button")
             btn.innerHTML="Add To Cart"
+            btn.addEventListener("click",()=>{
+                cart(ele._id)
+            })
 
             let div=document.createElement("div")
             div.setAttribute("class","Product-div")
