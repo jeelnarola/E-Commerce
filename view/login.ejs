@@ -26,7 +26,7 @@
                             <div class="inputbox">
                                 <input type="password" id="title" placeholder="" class="password" name="password" required>
                                 <span for="" class="title">Password</span>
-                                <i class="fa-solid fa-eye-slash"></i>
+                                <i class="fa-solid fa-eye-slash" id="icon"></i>
                                 <p><a href="/EmailVerify">forget password !</a></p>
                             </div> 
                             <input type="submit" value="submit" class="loginbtn">
@@ -46,6 +46,20 @@
     
 </body>
 <script>
+    const show=()=>{
+        let pass=document.querySelector(".password")
+        let icon=document.getElementById("icon")
+        console.log(icon);
+        if(pass.type==="password"){
+            pass.type="text"
+            icon.classList.replace("fa-eye-slash","fa-eye")
+
+        }else{
+            pass.type="password"
+            icon.classList.replace("fa-eye","fa-eye-slash")
+        }
+    }
+    document.getElementById("icon").addEventListener("click",()=>show())
     document.getElementById("signup").addEventListener("submit",(e)=>{
         e.preventDefault();
         email=document.querySelector('.email').value

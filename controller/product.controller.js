@@ -1,21 +1,17 @@
 const cartModel = require("../Model/cart.schema");
-const productModel = require("../Model/product.model")
-const usermodel = require("../Model/user.model")
-const multer=require("multer")
+const productModel = require("../Model/product.model");
+const savemodel = require("../Model/save.schema");
+const usermodel = require("../Model/user.model");
+const path = require("../helper");
 
-const Store=multer.diskStorage({
-    destination:"images",
-    filename:(req,file,cd)=>{
-        cd(null,file.originalname);
-    },
-})
-const user=multer({
-    storage:Store,
-}).single("img")
 
 const UserProfile=async(req,res)=>{
-    console.log(req.file.path);
-    res.send(req.file.path)
+    let pat=path()
+    pat+=`/${req.file.path}`
+    let data=await usermodel.findById(req.user.id)
+    data.img=pat;
+    await data.save()
+    res.send("yes")
 }
 
 const Product=(req,res)=>{
@@ -98,7 +94,21 @@ const cartAdd=async(req,res)=>{
     console.log(productId);
 }
 
+const productSave=async(req,res)=>{
+    let{productId}=req.body
+    let userId=req.user.id
+    let data=(await savemodel.create({productId,userId}))
+    res.render("profile")
+}
+
+const SaveData=async(req,res)=>{
+    let data=await savemodel.find({userId:req.user.id}).populate("productId")
+    res.send(data)
+}
 
 
 
-module.exports={Product,ProductPost,Profile,UserData,user,UserProfile,ProductShow,productGet,adminProduct,singlePaeg,SingleData,userPost,userPostPaeg,Edit,cartAdd,cartGet,cartData}
+
+
+
+module.exports={Product,ProductPost,Profile,UserData,ProductShow,productGet,adminProduct,singlePaeg,SingleData,userPost,userPostPaeg,Edit,cartAdd,cartGet,cartData,UserProfile,productSave,SaveData}

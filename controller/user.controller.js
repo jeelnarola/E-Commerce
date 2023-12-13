@@ -23,7 +23,7 @@ const SignupPost=async(req,res)=>{
      }else{
         let data=await usermodel.create(req.body)
         const token = jwt.sign({id:data.id,role:data.role},process.env.token)
-        res.cookie('token',token).send(data)
+        res.cookie('token',token).cookie("U",data.role).send(data)
      }
 }
 
@@ -42,7 +42,7 @@ const loginCheck=async(req,res)=>{
    let data=await usermodel.findOne({email:email})
      if(data){
       const token = jwt.sign({id:data.id,role:data.role},process.env.token)
-        res.cookie('token',token).cookie("user",data.email).send({data:data})
+        res.cookie('token',token).cookie("U",data.role).cookie("user",data.email).send({data:data})
      }else{
         res.send({msg : "User not reistered"})
      }

@@ -18,6 +18,9 @@
 </body>
 <script>
     let id=window.location.href.split("/")[4]
+    let cookie=document.cookie.split(";")[1]
+    let mycookie=cookie.split("=")[1]
+    console.log(mycookie);
 
     console.log(id);
     const display=(ele)=>{
@@ -91,18 +94,41 @@
             color.setAttribute("class","color")
 
             colordiv.append(colorlabel,color)
+            let btn;
+            
+            if(mycookie=="user"){
 
-            btn=document.createElement("button")
-            btn.innerHTML="Updat"
-            btn.addEventListener("click",()=>{
-                window.location.href=`/edit/${ele._id}`
-            })
+                btn=document.createElement("button")
+                btn.innerHTML="add to cart"
+                btn.addEventListener("click",()=>{
+                    window.location.href=`/edit/${ele._id}`
+                })
+            }
+            else{
+                btn=document.createElement("button")
+                btn.innerHTML=""
+                btn.style.display="none"
+            }
+            let name;
+            if(mycookie=="admin"){
+                name=document.createElement("p")
+                name.style.display="none"
+            }else{
+                name=document.createElement("p")
+                name.innerHTML="Product Location"
+                name.addEventListener("click",()=>{
+                document.location.href=`http://localhost:8090/singlePaeg/${ele._id}`
+
+                })
+            }
+            
+            
 
             let div=document.createElement("div")
             div.setAttribute("class","Product-div")
             let contentDiv=document.createElement("div")
             contentDiv.setAttribute("class","contentDiv")
-            contentDiv.append(title,price,label,desc,stockdiv,sizediv,categorydiv,colordiv,btn)
+            contentDiv.append(title,price,label,desc,stockdiv,sizediv,categorydiv,colordiv,btn,name)
             div.append(imgDiv,contentDiv)
             document.getElementById("singleproduct").append(div)
     }

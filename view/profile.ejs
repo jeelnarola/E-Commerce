@@ -20,7 +20,7 @@
                 <!-- <div class="user-profile"></div> -->
                 <div class="user-profile">
                    <div class="img-box">
-                    <img src="/img/userProfile.png" alt="">
+                    <img src="/img/userProfile.png" id="userProfileImg" alt="img loading">
                     <form action="#" id="usrIMG"  enctype="multipart/form-data" >
                         <label for="userProfile" id="plus" name="img" style="cursor: pointer;" ><i class="fa-solid fa-plus" ></i></label>
                         <input type="file" id="userProfile" name="img" style="display: none;" />
@@ -33,7 +33,6 @@
                 <div class="userPostTo">
                     <div class="user-content"></div>
                     <div class="PostTotle">h</div>
-
                 </div>
             </div>
         </div>
@@ -47,8 +46,8 @@
         <div class="container">
             <div class="Post">
                 <ul class="row">
-                    <li><a href="" style="color: black; text-transform: uppercase;">Post</a></li>
-                    <li><a href="" style="color: black; text-transform: uppercase;">Save</a></li>
+                    <li class="productAdd"><a href="" style="color: black; text-transform: uppercase;" >Post</a></li>
+                    <li class="save"><a href="" style="color: black; text-transform: uppercase;">Save</a></li>
                     <li><a href="" style="color: black; text-transform: uppercase;">Order</a></li>
                 </ul>
             </div>
@@ -62,25 +61,42 @@
     <section>
         <div class="container">
             <div class="appdend"></div>
+            <div class="saveA"></div>
         </div>
     </section>
 </body>
 <script>
-    document.getElementById("usrIMG").addEventListener("submit",(e)=>{
-        e.preventDefault()
-        let data=new FormData()
-        let user=document.getElementById("userProfile")
+   
+    
+    document.querySelector(".productAdd").addEventListener("click",()=>{
+        data()
+    })
 
-        console.log("user",user);
-        fetch("http://localhost:8090/userprofile",{
+    let cookie=document.cookie.split(";")[1]
+    let mycookie=cookie.split("=")[1]
+    let productAdd=document.querySelector(".productAdd")
+
+    if(mycookie=="user"){
+        productAdd.classList.add("ProductUser")
+    }
+    else{
+        productAdd.classList.remove("ProductUser")
+
+    }
+   
+    document.getElementById("userProfile").addEventListener("change",(e)=>{
+        e.preventDefault()
+        let formdata=new FormData()
+        formdata.append("img",document.getElementById("userProfile").files[0])
+        fetch("http://localhost:8090/UserProfile",{
             method:"POST",
-            headers:{"content-type":"application/json"},
-            body:JSON.stringify({img:user})
+            body:formdata
         })
     })
     
 
     const disply=(data)=>{
+        
         let user=document.createElement("label")
         user.innerHTML="Username :"
         let username=document.createElement("h3")
@@ -106,16 +122,23 @@
         let btn=document.createElement("button")
         btn.innerHTML="Edit Profile"
         btn.setAttribute("class","editProfile")
+        let logOut=document.createElement("button")
+        logOut.innerHTML="Log-Out"
+        logOut.setAttribute("class","logOut")
 
         div2.append(role,roleName)
 
-        document.querySelector(".user-content").append(div,div2,bio,btn)
+        document.querySelector(".user-content").append(div,div2,bio,btn,logOut)
     }
 
     const get=()=>{
         fetch("http://localhost:8090/userdata")
         .then((Response)=>Response.json())
-        .then((data)=>disply(data))
+        .then((data)=>{
+            disply(data)
+            let userP=document.getElementById("userProfileImg").src=data.img
+            userP.src=data.img
+        })
     }
     get()
 
@@ -131,7 +154,7 @@
             div.setAttribute("class","Product-div")
             div.append(img)
             div.addEventListener("click",()=>{
-                document.location.href=`/userPost/${ele._id}`
+                document.location.href=`http://localhost:8090/singlePaeg/${ele._id}`
             })
             document.querySelector(".appdend").append(div)
         })
@@ -145,5 +168,36 @@
         })
     }
     data()
+
+    document.querySelector(".save").addEventListener("click",(e)=>{
+        e.preventDefault()
+        const saveD=(data)=>{
+        document.querySelector(".appdend").innerHTML=""
+        data.map((item)=>{
+            let ele=item.productId
+            let img=document.createElement("img")
+            img.src=ele.img
+            
+            let div=document.createElement("div")
+            
+            div.setAttribute("class","Product-div")
+            div.append(img)
+            div.addEventListener("click",()=>{
+                document.location.href=`/userPost/${ele._id}`
+            })
+            document.querySelector(".saveA").append(div)
+        })
+    }
+        const save=()=>{
+        fetch("http://localhost:8090/save")
+        .then((res)=>res.json())
+        .then((data)=>{
+            saveD(data)
+        })
+        }
+    save()
+    })
+    
+
 </script>
 </html>

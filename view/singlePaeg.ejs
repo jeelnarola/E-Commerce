@@ -19,8 +19,11 @@
 </body>
 <script>
     let id=window.location.href.split("/")[4]
-    let paeg=window.location.href.split("/")[3]
-    console.log(paeg);
+    let cookie=document.cookie.split(";")[1]
+    let mycookie=cookie.split("=")[1]
+    console.log(mycookie);
+    // let paeg=window.location.href.split("/")[3]
+    // console.log(paeg);
 
 
     const cart=(id)=>{
@@ -31,12 +34,28 @@
         })
     }
 
+    const save=(id)=>{
+        fetch("/save",{
+            method:"POST",
+            headers : {"content-type":"application/json"},
+            body : JSON.stringify({productId:id})
+        })
+    }
+
     const display=(ele)=>{
             let img=document.createElement("img")
             img.src=ele.img
+            let icon=document.createElement("p")
+            icon.innerHTML='<i class="fa-regular fa-bookmark"></i>'
+            icon.setAttribute("class","P-Icon")
+
+            icon.addEventListener("click",()=>{
+                save(ele._id)
+            })
 
             let imgDiv=document.createElement("div")
-            imgDiv.append(img)
+            imgDiv.append(img,icon)
+            imgDiv.setAttribute("class","p-p")
             let title=document.createElement("h1")
             title.innerHTML=ele.title
 
@@ -102,12 +121,22 @@
             color.setAttribute("class","color")
 
             colordiv.append(colorlabel,color)
-            let btn=document.createElement("button")
-            btn.innerHTML="Add To Cart"
-            btn.addEventListener("click",()=>{
-                cart(ele._id)
-            })
+            
+            let btn;
 
+            if(mycookie=="admin"){btn=document.createElement("button")
+                btn.innerHTML="Updat"
+                btn.addEventListener("click",()=>{
+                    window.location.href=`/edit/${ele._id}`
+                })
+
+            }else{
+                btn=document.createElement("button")
+                btn.innerHTML="Add To Cart"
+                btn.addEventListener("click",()=>{
+                    cart(ele._id)
+                })
+            }
             let div=document.createElement("div")
             div.setAttribute("class","Product-div")
             let contentDiv=document.createElement("div")
