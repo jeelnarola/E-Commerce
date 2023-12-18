@@ -805,3 +805,90 @@ margin-bottom: 25px;
 .saveA img{
     width: 100%;
 }
+
+
+        /* CART PAEG DESIGN CSS */
+
+
+table{
+    border: 1px solid black;
+    padding: 20px;
+}
+.cart table thead td{
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.cart .cartTable{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+.cart .cartTable table tbody{
+    padding: 10px;
+}
+.cart .cartTable table tbody tr img{
+    width: 70px;
+    height: 80px;
+    padding-left: 10px;
+    padding-top: 10px;
+
+}
+.CartTitle{
+    display: flex;
+    align-items: center;
+}
+.ProductContent{
+    padding:10px;
+    padding-top: 20px;
+    padding-right: 250px;
+    
+}
+.ProductContent td{
+    display: block;
+}
+.Cartremove{
+    font-size: 13px;
+    color: orangered;
+}
+.cartBtn{
+    display: flex;
+}
+.qytdiv{
+    display: flex;
+    flex-wrap: nowrap;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.qyt{
+    padding:0px 10px;
+}
+.qytdiv button{
+    padding:0px 2px;
+}
+.qytdiv button i{
+    font-size: 10px;
+}
+.qyt1{
+    padding: 0px 30px;
+}
+.subtotal{
+    text-align: center;
+}
+.cartBtn{
+    display: block;
+    margin: auto;
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: 1px solid black;
+    text-transform: capitalize;
+    background-color: orangered;
+    color: white;
+    transition: all 0.3s;
+}
+.cartBtn:hover{
+    background-color: rgba(255, 68, 0, 0.685);
+    cursor: pointer;
+}

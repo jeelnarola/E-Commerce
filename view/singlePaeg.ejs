@@ -20,7 +20,7 @@
 <script>
     let id=window.location.href.split("/")[4]
     let cookie=document.cookie.split(";")[1]
-    let mycookie=cookie.split("=")[1]
+    let mycookie=cookie
     console.log(mycookie);
     // let paeg=window.location.href.split("/")[3]
     // console.log(paeg);
@@ -34,11 +34,15 @@
         })
     }
 
-    const save=(id)=>{
+    const save=(id,I)=>{
+        let obj={
+            productId:id,
+            icon:I,
+        }
         fetch("/save",{
             method:"POST",
             headers : {"content-type":"application/json"},
-            body : JSON.stringify({productId:id})
+            body : JSON.stringify(obj)
         })
     }
 
@@ -50,7 +54,8 @@
             icon.setAttribute("class","P-Icon")
 
             icon.addEventListener("click",()=>{
-                save(ele._id)
+                let I=icon.innerHTML='<i class="fa-solid fa-bookmark"></i>'
+                save(ele._id,I)
             })
 
             let imgDiv=document.createElement("div")
@@ -146,7 +151,7 @@
             document.getElementById("singleproduct").append(div)
     }
 
-    fetch(`http://localhost:8090/SingleData/${id}`)
+    fetch(`http://localhost:8090/singleData/${id}`)
     .then((res)=>res.json())
     .then((data)=>display(data))
 </script>

@@ -4,9 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        @import url(/css/all.min.css);
+        @import url(/css/style.css);
+    </style>
 </head>
 <body>
     <h1>Cart</h1>
+    <section class="cart">
+        <div class="container">
+            <div class="cartTable">
+                <table>
+                    <thead>
+                        <td>product</td>
+                        <td>quantity</td>
+                        <td>subtotal</td>
+                        <td>SingleCart</td>
+                    </thead>
+                    <tbody class="Tbody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
     
 </body>
+<script>
+
+
+    const display=(data)=>{
+        console.log("data",data);
+        data.map((item)=>{
+            let ele=item.productId
+            console.log(ele);
+
+            let img=document.createElement("img")
+            img.src=ele.img
+
+            
+            let td=document.createElement("td")
+            td.setAttribute("class","CartTitle")
+            
+            let td1=document.createElement("td")
+            td1.setAttribute("class","ProductContent")
+
+            
+            let title=document.createElement("td")
+
+            let titleP=document.createElement("td")
+            titleP.innerHTML=ele.price
+
+            let titlePro=document.createElement("td")
+            titlePro.innerHTML=ele.title
+            titlePro.setAttribute("class","titlePro")
+
+            title.setAttribute("class","CartTitle")
+            title.append(titlePro)            
+            let price=document.createElement("td")
+            price.innerHTML=`Price : ₹ ${ele.price}`
+
+
+            let remove=document.createElement("td")
+            remove.innerHTML="Remove"
+            remove.setAttribute("class","Cartremove")
+
+            td1.append(title,price,remove)
+            td.append(img,td1)
+
+
+           let td2=document.createElement("td")
+            td2.setAttribute("class","cartBtn")
+
+
+            let qyt=document.createElement("td")
+            qyt.setAttribute("class","qyt1")
+            // qyt.innerHTML=item.qyt
+
+            let plus=document.createElement("button")
+            plus.innerHTML='<i class="fa-solid fa-plus"></i>'
+
+            let qytProduct=document.createElement("td")
+            qytProduct.setAttribute("class","qyt")
+            qytProduct.innerHTML=item.qyt
+
+            let min=document.createElement("button")
+            min.innerHTML=`<i class="fa-solid fa-minus"></i>`
+
+            let qytdiv=document.createElement("td")
+            qytdiv.setAttribute("class","qytdiv")
+            qytdiv.append(plus,qytProduct,min)
+            qyt.append(qytdiv)
+            
+            
+            let subtotal=document.createElement("td")
+            subtotal.innerHTML=ele.price
+            subtotal.setAttribute("class","subtotal")
+
+            let cart=document.createElement("td")
+
+            let cartBtn=document.createElement("button")
+            cartBtn.innerHTML="cart"
+            cartBtn.setAttribute("class","cartBtn")
+
+            cart.append(cartBtn)
+
+
+            let tr=document.createElement("tr")
+            tr.append(td,qyt,subtotal,cart)
+
+
+            let tr2=document.createElement("tr")
+
+           
+
+
+            document.querySelector("Tbody").append(tr)
+            
+        })
+    }
+
+    const get=()=>{
+        fetch("http://localhost:8090/cartProduct")
+        .then((res)=>res.json())
+        .then((data)=>{
+            display(data);
+        })
+    }
+    get()
+</script>
 </html>
