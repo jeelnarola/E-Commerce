@@ -4,6 +4,7 @@ const  userSchema=new mongoose.Schema({
     img:String,
     username:String,
     email:String,
+    number:Number,
     password:String,
     role:{type: String,
         enum: ["user", "admin"], // Define allowed roles

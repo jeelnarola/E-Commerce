@@ -107,8 +107,22 @@ const SaveData=async(req,res)=>{
 }
 
 
+const qyt=async(req,res)=>{
+    let {qyt}=req.body
+    let {id}=req.params
+    let data=await cartModel.findById(id)
+
+    data.qyt +=qyt
+    await data.save()
+    if(data.qyt==0){
+        await cartModel.findByIdAndDelete(id)
+    }
+    res.send("updata")
+}
 
 
 
 
-module.exports={Product,ProductPost,Profile,UserData,ProductShow,productGet,adminProduct,singlePaeg,SingleData,userPost,userPostPaeg,Edit,cartAdd,cartGet,cartData,UserProfile,productSave,SaveData}
+
+
+module.exports={Product,ProductPost,Profile,UserData,ProductShow,productGet,adminProduct,singlePaeg,SingleData,userPost,userPostPaeg,Edit,cartAdd,cartGet,cartData,UserProfile,productSave,SaveData,qyt}

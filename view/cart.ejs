@@ -31,6 +31,17 @@
 </body>
 <script>
 
+    const add=(id,qyt)=>{
+        fetch(`/cartQyt/${id}`,{
+            method:"PATCH",
+            headers:{"content-type":"application/json"},
+            body:JSON.stringify({qyt})
+        })
+        // window.location.href="http://localhost:8090/cart"
+        .then((res)=>{return res.json()})
+        .then((data)=>get())
+    }
+
 
     const display=(data)=>{
         console.log("data",data);
@@ -82,6 +93,9 @@
 
             let plus=document.createElement("button")
             plus.innerHTML='<i class="fa-solid fa-plus"></i>'
+            
+            
+            plus.addEventListener("click",()=>add(item._id,1))
 
             let qytProduct=document.createElement("td")
             qytProduct.setAttribute("class","qyt")
@@ -89,6 +103,8 @@
 
             let min=document.createElement("button")
             min.innerHTML=`<i class="fa-solid fa-minus"></i>`
+            min.addEventListener("click",()=>add(item._id,-1))
+
 
             let qytdiv=document.createElement("td")
             qytdiv.setAttribute("class","qytdiv")
@@ -97,7 +113,7 @@
             
             
             let subtotal=document.createElement("td")
-            subtotal.innerHTML=ele.price
+            subtotal.innerHTML=ele.price*item.qyt
             subtotal.setAttribute("class","subtotal")
 
             let cart=document.createElement("td")
@@ -114,10 +130,6 @@
 
 
             let tr2=document.createElement("tr")
-
-           
-
-
             document.querySelector("Tbody").append(tr)
             
         })

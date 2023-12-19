@@ -22,6 +22,7 @@ const SignupPost=async(req,res)=>{
         res.send("user")
      }else{
         let data=await usermodel.create(req.body)
+        console.log(data);
         const token = jwt.sign({id:data.id,role:data.role},process.env.token)
         res.cookie('token',token).cookie("U",data.role).send(data)
      }

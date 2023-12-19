@@ -1,5 +1,5 @@
 const {Router}=require("express")
-const { Product, ProductPost, Profile, UserData,UserProfile, ProductShow, productGet, adminProduct, singlePaeg, SingleData, userPost, userPostPaeg, Edit, cartAdd, cartGet, cartData, productSave, SaveData } = require("../controller/product.controller")
+const { Product, ProductPost, Profile, UserData,UserProfile, ProductShow, productGet, adminProduct, singlePaeg, SingleData, userPost, userPostPaeg, Edit, cartAdd, cartGet, cartData, productSave, SaveData, qyt } = require("../controller/product.controller")
 const verifyToken = require("../middleware/verifyToken")
 const usermodel = require("../Model/user.model")
 
@@ -56,8 +56,14 @@ product.get("/cart",verifyToken,cartGet)
 product.post("/cart",verifyToken,cartAdd)
 product.get("/cartProduct",verifyToken,cartData)
 
+product.patch("/cartQyt/:id",qyt)
+
 product.get("/save",verifyToken,SaveData)
 product.post("/save",verifyToken,productSave)
+
+product.get("/logout",(req,res)=>{
+    res.clearCookie("token").clearCookie("user").clearCookie("U").render("home")
+})
 
 
 
